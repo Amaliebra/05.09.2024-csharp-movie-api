@@ -5,7 +5,7 @@ using Microsoft.Net.Http.Headers;
 class Movie
 {
     private static int id = 0;
-    public int id(get; set; )
+    public int Id(get; set; )
     public string Title { get; set; }
 
     public Movie(string title)
@@ -32,10 +32,11 @@ internal class Program
         {
             if (movie == null)
             {
-                return.Results.BadRequest();
+                return.Results.NotFound();
             }
 
-            return Results.Created();
+            movies.Remove(movie);
+            return Results.Ok();
         });
 
         //delete a movie 
