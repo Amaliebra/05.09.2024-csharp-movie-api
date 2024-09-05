@@ -1,13 +1,17 @@
 
+using Microsoft.Net.Http.Headers;
+
 class Movie
 {
-
+    private static int id = 0;
+    public int id(get; set; )
     public string Title { get; set; }
 
-    public Movie {string title}
-{
-    Title = title;
-}
+    public Movie(string title)
+    {
+        Title = title;
+        Id = _id++;
+    }
 }
 internal class Program
 {
@@ -23,7 +27,15 @@ internal class Program
         app.MapGet("/movies", (List<Movie> movies) => movies);
 
         // create add a movie
-        app.MapPost("/movies", () => "add a new movie");
+        app.MapPost("/movies", (Movie? movie, List<Movie> movies) =>
+        {
+            if (movie == null)
+            {
+                return.Results.BadRequest();
+            }
+
+            return Results.Created();
+        });
 
         //delete a movie 
         app.MapDelete("/movies/{id}", (int id) => $"delete movie with id: {id}");
