@@ -1,4 +1,5 @@
 
+using System.Reflection.Metadata.Ecma335;
 using Microsoft.Net.Http.Headers;
 
 class Movie
@@ -38,7 +39,12 @@ internal class Program
         });
 
         //delete a movie 
-        app.MapDelete("/movies/{id}", (int id) => $"delete movie with id: {id}");
+        app.MapDelete("/movies/{id}", (int id, List<>) =>
+        {
+        movies.Find (movie) => (
+            Return movie.id == id()
+            )
+        });
 
         // Update a movies
         app.MapPut("/movies/{id}", (int id) => $"update movie with id: {id}");
