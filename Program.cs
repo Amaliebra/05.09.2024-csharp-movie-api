@@ -5,7 +5,7 @@ using Microsoft.Net.Http.Headers;
 class Movie
 {
     private static int id = 0;
-    public int Id(get; set; )
+    public int Id { get; set; }
     public string Title { get; set; }
 
     public Movie(string title)
