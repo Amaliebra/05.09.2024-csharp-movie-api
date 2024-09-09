@@ -20,12 +20,15 @@ internal class Program
     {
         var builder = WebApplication.CreateBuilder(args);
         //Register the list with the dependency container
-        builder.Services.AddSingleton<List<Movie>>();
+        builder.Services.AddSingleton<IMovieService, MovieService>();
         var app = builder.Build();
 
 
         //GET ALL Movies
-        app.MapGet("/movies", (List<Movie> movies) => movies);
+        app.MapGet("/movies", (IMovieService movieService) =>
+        {
+            if (MovieService)
+        });
 
         // create add a movie
         app.MapPost("/movies", (Movie? movie, List<Movie> movies) =>
